@@ -4,6 +4,7 @@ on:
 jobs:
   Publish:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' || startsWith(github.ref,'refs/heads/release/')
     steps:
     - name: Dump GitHub context
       env:
@@ -11,4 +12,3 @@ jobs:
       run: echo "$GITHUB_CONTEXT"
     - name: guarded action
       run: 'echo "performing action"' 
-      if: github.ref == 'refs/heads/master' || startsWith(github.ref,'refs/heads/release/')
